@@ -516,8 +516,8 @@
                 $('.hide-new_born').show();
                 //
                 $('.hide-adult input').removeAttr('required');
-                // $('.hide-old_boy input').attr('required', true);
-                // $('.hide-new_born input').attr('required', true);
+                $('.hide-old_boy input').attr('required', true);
+                $('.hide-new_born input').attr('required', true);
                 break;
 
             default:
@@ -526,8 +526,8 @@
                 $('.hide-new_born').hide();
                 //
                 $('.hide-adult input').attr('required', true);
-                // $('.hide-old_boy input').removeAttr('required');
-                // $('.hide-new_born input').removeAttr('required');
+                 $('.hide-old_boy input').removeAttr('required');
+                 $('.hide-new_born input').removeAttr('required');
                 break;
         }
     }
