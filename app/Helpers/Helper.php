@@ -183,6 +183,18 @@ class Helper
             ":next_kin:" => $patient
                 ? $patient->next_kin
                 : 'next_kin',
+            ":next_kin_name:" => $patient
+                ? $patient->next_kin
+                : 'next_kin_name',
+            ":next_of_kin_relationship:" => $patient
+                ? $patient->next_kin_relationship
+                : 'next_of_kin_relationship',   
+            ":next_kin_address:" => $patient
+                ? $patient->next_kin_address   
+                : 'next_kin_address',
+            ":next_kin_phone:" => $patient
+                ? $patient->next_kin_phone
+                : 'next_kin_phone',              
             ":gp_details:" => $patient
                 ? $patient->gp_details
                 : 'gp_details',
@@ -287,6 +299,18 @@ class Helper
             ":next_kin:" => $patient
                 ? $patient->next_kin
                 : 'next_kin',
+            ":next_kin_name:" => $patient
+                ? $patient->next_kin
+                : 'next_kin_name',
+            ":next_of_kin_relationship:" => $patient
+                ? $patient->next_kin_relationship
+                : 'next_of_kin_relationship',   
+            ":next_kin_address:" => $patient
+                ? $patient->next_kin_address   
+                : 'next_kin_address',
+            ":next_kin_phone:" => $patient
+                ? $patient->next_kin_phone
+                : 'next_kin_phone',     
             ":gp_details:" => $patient
                 ? $patient->gp_details
                 : 'gp_details',
