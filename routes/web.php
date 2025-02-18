@@ -25,6 +25,9 @@ use App\Http\Controllers\WhatsAppController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PatientRegisterLinkController;
 use App\Http\Controllers\RemoteParentSignatureController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RoleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +39,12 @@ use App\Http\Controllers\RemoteParentSignatureController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+
+Route::post('/assign-role/{user}', [RoleController::class, 'assignRole']);
 
 Route::get('test_cache', function () {
     dd("test is cleared");

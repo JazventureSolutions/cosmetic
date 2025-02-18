@@ -233,6 +233,9 @@ class AppointmentController extends Controller
         $appointment_followup_status = Helper::getAppointmentFollowupStatusForSelect();
         $appointment_types = Helper::getAppointmentTypesForSelect();
         $PatientAppointTypes = Helper::getAppointmentTypes();
+
+        dd($patient);
+
         return view('patients.appointments.edit', [
             'branches' => $branches,
             'title' => $title,
