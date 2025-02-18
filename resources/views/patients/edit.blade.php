@@ -367,8 +367,9 @@
                         <div class="col-md-12">
                             <hr>
                         </div>
+                        @if(!auth()->user()->hasRole('admin'))
                         <div class="col-md-6 hide-new_born hide-old_boy">
-
+                        
                             <!--begin::Group-->
                             <div class="form-group">
                                 <label class="form-label">Next of Kin</label>
@@ -384,6 +385,7 @@
                             <!--end::Group-->
 
                         </div>
+                        
                         <div class="col-md-6 hide-new_born hide-old_boy">
                         <div class="form-group">
                             <label class="form-label">Next of Kin Relationship</label>
@@ -397,7 +399,9 @@
                             <span class=" invalid-feedback">{{ $errors->first('next_kin_relationship') }}</span>
                             @endif
                         </div>
+                        @endif
                     </div>
+                    @if(!auth()->user()->hasRole('admin'))
                     <div class="col-md-6 hide-new_born hide-old_boy">
                         <div class="form-group">
                             <label class="form-label">Next of Kin Address</label>
@@ -555,6 +559,7 @@
                         </div>
                         {{-- @endif --}}
                     </div>
+                    @endif
                     <!--end::Row-->
 
                 </form>
