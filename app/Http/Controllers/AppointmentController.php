@@ -228,14 +228,10 @@ class AppointmentController extends Controller
                 $doctor = Doctor::findOrFail($request->doctor_id);
             }
         }
-
         $appointment_status = Helper::getAppointmentStatusForSelect();
         $appointment_followup_status = Helper::getAppointmentFollowupStatusForSelect();
         $appointment_types = Helper::getAppointmentTypesForSelect();
         $PatientAppointTypes = Helper::getAppointmentTypes();
-
-        dd($patient);
-
         return view('patients.appointments.edit', [
             'branches' => $branches,
             'title' => $title,

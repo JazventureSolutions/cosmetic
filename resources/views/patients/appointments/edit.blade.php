@@ -2,7 +2,6 @@
 
 @section('content')
 
-{{dd($patient)}}
 
 <div class="card card-custom">
     <!--begin::Card body-->
