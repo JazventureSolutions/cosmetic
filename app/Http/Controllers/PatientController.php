@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use App\Models\PatientType;
 use Carbon\Carbon;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,7 @@ class PatientController extends Controller
             $patients = Patient::select(['patients.*', 'appointments.followup_date', 'appointments.start_time', 'appointments.status', 'appointments.followup_status', 'appointments.date'])
                 ->leftJoin('appointments', 'patients.id', '=', 'appointments.patient_id')
                 ->leftJoin('audits', 'patients.id', '=', 'audits.patient_id')
-                ->with(['appointments', 'audit']);
+                ->with(['appointments', 'audit'])->where('patients.role_id',auth()->user()->roles->first()->id);
 
             if (Route::currentRouteName() == 'patients') {
                 $patients = $patients->where('approved', "1")
@@ -347,7 +348,8 @@ class PatientController extends Controller
             $patient = Patient::findOrFail($id);
         }
 
-        $patient_types = Helper::getPatientTypesForSelect();
+        // $patient_types = Helper::getPatientTypesForSelect();
+        $patient_types = PatientType::where('role_id',auth()->user()->roles->first()->id)->pluck('name', 'value')->toArray();
         $AppointmentTypes = Helper::getAppointmentTypes();
         $branches = Helper::getCompanyBranchesForSelect(1);
 
@@ -402,6 +404,7 @@ class PatientController extends Controller
             'type' => $request->type,
             'approved' => $patient->approved ?? "1",
             'branch_id' => $request->branch_id,
+            'role_id' => auth()->user()->roles->first()->id,
             // 'period_id' => $patient->period_id ?? "1"
         ];
 

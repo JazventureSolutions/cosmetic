@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Models\Template;
+use App\Models\PatientType;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,8 @@ class TemplateController extends Controller
     {
         $title = 'Templates';
 
-        $patient_types = Helper::getPatientTypesForSelect();
+        // $patient_types = Helper::getPatientTypesForSelect();
+        $patient_types = PatientType::where('role_id',auth()->user()->roles->first()->id)->pluck('name', 'value')->toArray();
         $report_types = Helper::getReportTypesForSelect();
 
         if ($request->ajax()) {
@@ -35,7 +37,8 @@ class TemplateController extends Controller
                 'templates.is_report',
                 'templates.html',
             ])
-                ->where('is_active', 1);
+                ->where('is_active', 1)
+                ->where('role_id', auth()->user()->roles->first()->id);
 
             if (in_array($patient_type, array_keys($patient_types)) && $patient_type != 'All') {
                 $query = $query->where('templates.patient_type', $patient_type);
