@@ -37,8 +37,7 @@ class TemplateController extends Controller
                 'templates.is_report',
                 'templates.html',
             ])
-                ->where('is_active', 1)
-                ->where('role_id', auth()->user()->roles->first()->id);
+                ->where('is_active', 1);
 
             if (in_array($patient_type, array_keys($patient_types)) && $patient_type != 'All') {
                 $query = $query->where('templates.patient_type', $patient_type);
