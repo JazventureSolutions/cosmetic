@@ -14,6 +14,8 @@ class Template extends Model
      */
     protected $guarded = [];
 
+    protected $table = 'templates';
+
     public function getEditRouteAttribute()
     {
         try {
