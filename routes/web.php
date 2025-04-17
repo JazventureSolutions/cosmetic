@@ -115,6 +115,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('patients')->group(function () {
         Route::get('/', [PatientController::class, 'index'])->name('patients');
+        Route::get('/search', [PatientController::class, 'search'])->name('patients.search');
         Route::get('/add', [PatientController::class, 'edit'])->name('patients.add');
         Route::get('/{id}/edit', [PatientController::class, 'edit'])->name('patients.edit');
         Route::post('/store', [PatientController::class, 'store'])->name('patients.store');

@@ -53,7 +53,20 @@ class PatientController extends Controller
 
         return redirect()->route('unapproved-patients');
     }
-
+    public function search(Request $request)
+    {
+       
+       
+        $query = $request->input('name');
+        
+        $patients = [];
+    
+        if ($query) {
+            $patients = Patient::where('name', 'LIKE', '%' . $query . '%')->get();
+        }
+    
+        return view('patients.search', compact('patients', 'query'));
+    }
     public function index(Request $request)
     {
         $title = 'Patients';
